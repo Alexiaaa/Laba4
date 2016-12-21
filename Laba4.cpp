@@ -1,4 +1,4 @@
-// À‡· 7.cpp : Defines the entry point for the console application.
+//// À‡· 7.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -6,160 +6,147 @@
 #include <string>
 using namespace std;
 class car
-{   protected:
-	int pas, w, ms;
-	string name;
-    public:
-    car(int Pas, int W, int Ms,string Name);
-	virtual void print()=0;
-
-};
-car::car(int Pas, int W, int Ms, string Name)
 {
-	pas = Pas;
-	w = W;
-	ms = Ms;
+protected:
+	int passengers, weight, maxspeed;
+	string name;
+public:
+	car(int Passengers, int Weight, int MaxSpeed, string Name);
+	virtual void print() = 0;
+};
+car::car(int Passengers, int Weight, int MaxSpeed, string Name)
+{
+	passengers = Passengers;
+	weight = Weight;
+	maxspeed = MaxSpeed;
 	name = Name;
 }
-
 class internalcombustion : public car
 {
- protected:
- int num;
+protected:
+	int numofdoors;
 public:
-	internalcombustion(int Pas, int W, int Ms, string Name, int Num);
-	virtual void print()=0;
+	internalcombustion(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors);
+	virtual void print() = 0;
 };
 
-internalcombustion::internalcombustion(int Pas, int W, int Ms, string Name, int Num):car(Pas, W, Ms,Name)
+internalcombustion::internalcombustion(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors) :car(Passengers, Weight, MaxSpeed, Name)
 {
-	num = Num;
+	numofdoors = Numofdoors;
 }
 class electric : public car
-{  
-   protected:
+{
+protected:
 	int power;
-    public:
-	electric(int Pas, int W, int Ms, string Name, int Power);
+public:
+	electric(int Passengers, int Weight, int MaxSpeed, string Name, int Power);
 	virtual void print() = 0;
-	
 };
-electric::electric(int Pas, int W, int Ms, string Name, int Power) :car(Pas, W, Ms, Name)
+electric::electric(int Passengers, int Weight, int MaxSpeed, string Name, int Power) :car(Passengers, Weight, MaxSpeed, Name)
 {
 	power = Power;
 }
 class passengercar : public internalcombustion
 {
-    protected:
-	string gb;
-    public:
-	passengercar(int Pas, int W, int Ms, string Name, int Num, string Gb);
+protected:
+	string gearbox;
+public:
+	passengercar(int Passengers, int Weight, int MaxSpeed, string Name, int Num, string Gearbox);
 	void print();
-	
-	
 };
 
-passengercar::passengercar(int Pas, int W, int Ms, string Name, int Num, string Gb) :internalcombustion(Pas, W, Ms, Name, Num)
-
+passengercar::passengercar(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors, string Gearbox) :internalcombustion(Passengers, Weight, MaxSpeed, Name, Numofdoors)
 {
-	gb = Gb;
+	gearbox = Gearbox;
 }
-void passengercar :: print()
+void passengercar::print()
 {
 	cout << "Name: " << name << endl;
-	cout << "Passengers: " << pas << endl;
-	cout << "Weight: " << w << endl;
-	cout << "Max Speed: " << ms << endl;
-	cout << "Number of doors: " << num << endl;
-	cout << "Gearbox: " << gb << endl;
+	cout << "Passengers: " << passengers << endl;
+	cout << "Weight: " << weight << endl;
+	cout << "Max Speed: " << maxspeed << endl;
+	cout << "Number of doors: " << numofdoors << endl;
+	cout << "Gearbox: " << gearbox << endl;
 	cout << "\n";
 }
 class vargo : public internalcombustion
-{   
-    protected:
-	int bc;
-     public:
-	vargo(int Pas, int W, int Ms, string Name, int Num,  int Bc);
+{
+protected:
+	int bearingcapacity;
+public:
+	vargo(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors, int Bearingcapacity);
 	void print();
-	
 };
 void vargo::print()
 {
 	cout << "Name: " << name << endl;
-	cout << "Passengers: " << pas << endl;
-	cout << "Weight: " << w << endl;
-	cout << "Max Speed: " << ms << endl;
-	cout << "Number of doors: " << num << endl;
-	cout << "Bearing capacity: " << bc << endl;
+	cout << "Passengers: " << passengers << endl;
+	cout << "Weight: " << weight << endl;
+	cout << "Max Speed: " << maxspeed << endl;
+	cout << "Number of doors: " << numofdoors << endl;
+	cout << "Bearing capacity: " << bearingcapacity << endl;
 	cout << "\n";
 }
-vargo::vargo(int Pas, int W, int Ms, string Name, int Num, int Bc) :internalcombustion(Pas, W, Ms, Name, Num)
+vargo::vargo(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors, int Bearingcapacity) :internalcombustion(Passengers, Weight, MaxSpeed, Name, Numofdoors)
 {
-	bc = Bc;
+	bearingcapacity = Bearingcapacity;
 }
 class bus : public internalcombustion
-{   protected:
-	int fl;
-    public:
-	bus(int Pas, int W, int Ms, string Name, int Num,  int Fl);
+{
+protected:
+	int floors;
+public:
+	bus(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors, int Floors);
 	void print();
-	
-	
 };
 void bus::print()
 {
 	cout << "Name: " << name << endl;
-	cout << "Passengers: " << pas << endl;
-	cout << "Weight: " << w << endl;
-	cout << "Max Speed: " << ms << endl;
-	cout << "Number of doors: " << num << endl;
-	cout << "Floors: " << fl << endl;
+	cout << "Passengers: " << passengers << endl;
+	cout << "Weight: " << weight << endl;
+	cout << "Max Speed: " << maxspeed << endl;
+	cout << "Number of doors: " << numofdoors << endl;
+	cout << "Floors: " << floors << endl;
 	cout << "\n";
-	
 }
-bus::bus(int Pas, int W, int Ms, string Name, int Num, int Fl) :internalcombustion(Pas, W, Ms, Name, Num)
+bus::bus(int Passengers, int Weight, int MaxSpeed, string Name, int Numofdoors, int Floors) :internalcombustion(Passengers, Weight, MaxSpeed, Name, Numofdoors)
 {
-	fl = Fl;
+	floors = Floors;
 }
 class trolleybus : public electric
 {
 protected:
-	int vol, loa;
-     public:
-	trolleybus(int Pas, int W, int Ms, string Name, int Power, int Vol, int Loa);
+	int voltage, length;
+public:
+	trolleybus(int Passengers, int Weight, int MaxSpeed, string Name, int Power, int Voltage, int Length);
 	void print();
-	
-
-	
 };
 
-trolleybus::trolleybus(int Pas, int W, int Ms, string Name, int Power, int Vol, int Loa) : electric(Pas,W,Ms,Name,Power)
+trolleybus::trolleybus(int Passengers, int Weight, int MaxSpeed, string Name, int Power, int Voltage, int Length) : electric(Passengers, Weight, MaxSpeed, Name, Power)
 {
-	vol = Vol;
-	loa = Loa;
+	voltage = Voltage;
+	length = Length;
 }
 void trolleybus::print()
 {
 	cout << "Name: " << name << endl;
-	cout << "Passengers: " << pas << endl;
-	cout << "Weight: " << w << endl;
-	cout << "Max Speed: " << ms << endl;
-	cout << "Voltage: " << vol << endl;
-	cout << "Length of Arrows: " << loa << endl;
+	cout << "Passengers: " << passengers << endl;
+	cout << "Weight: " << weight << endl;
+	cout << "Max Speed: " << maxspeed << endl;
+	cout << "Voltage: " << voltage << endl;
+	cout << "Length of Arrows: " << length << endl;
 	cout << "Power: " << power << endl;
 	cout << "\n";
-
 }
 class tram : public electric
 {
 protected:
 	int rw, noc;
-     public:
-	tram(int Pas, int W, int Ms, string Name, int Power, int Rw, int Noc);
+public:
+	tram(int Passengers, int Weight, int MaxSpeed, string Name, int Power, int Rw, int Noc);
 	void print();
-	
 };
-tram::tram(int Pas, int W, int Ms, string Name, int Power, int Rw, int Noc): electric(Pas, W, Ms, Name, Power)
+tram::tram(int Passengers, int Weight, int MaxSpeed, string Name, int Power, int Rw, int Noc) : electric(Passengers, Weight, MaxSpeed, Name, Power)
 {
 	rw = Rw;
 	noc = Noc;
@@ -168,14 +155,13 @@ tram::tram(int Pas, int W, int Ms, string Name, int Power, int Rw, int Noc): ele
 void tram::print()
 {
 	cout << "Name: " << name << endl;
-	cout << "Passengers: " << pas << endl;
-	cout << "Weight: " << w << endl;
-	cout << "Max Speed: " << ms << endl;
+	cout << "Passengers: " << passengers << endl;
+	cout << "Weight: " << weight << endl;
+	cout << "Max Speed: " << maxspeed << endl;
 	cout << "Rail Width: " << rw << endl;
 	cout << "Number of Cars: " << noc << endl;
 	cout << "Power: " << power << endl;
 	cout << "\n";
-
 }
 
 int main()
@@ -195,6 +181,6 @@ int main()
 	cout << "Tram" << endl;
 	tram Electron(250, 15000, 70, "Electron T5", 4000000, 1000, 5);
 	Electron.print();
-    return 0;
+	return 0;
 }
 
